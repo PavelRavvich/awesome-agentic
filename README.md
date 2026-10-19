@@ -225,12 +225,13 @@ These are the strongest starting points when you need a general builder stack, n
 - **Link:** https://github.com/langchain-ai/deepagents
 - **Why it stands out:** an opinionated harness on top of LangGraph with planning, filesystem-backed context, subagents, and long-running task ergonomics built in.
 - **Best for:** builders who like LangGraph's control but want a sharper starting point for complex agent execution.
+- **Execution note:** the [backend guide](https://docs.langchain.com/oss/python/deepagents/backends#localshellbackend-local-shell) distinguishes storage from execution isolation. `LocalShellBackend` runs commands directly on the host; `root_dir` sets the working directory, and `virtual_mode=True` does not confine shell access. Choose a sandbox backend for untrusted code or production shell execution rather than treating a virtual filesystem as containment. Last checked: 2026-10-19.
 
 ### DeerFlow
 - **Link:** https://github.com/bytedance/deer-flow
-- **Why it stands out:** ByteDance's MIT-licensed long-horizon harness packages LangGraph orchestration with subagents, persistent memory, skills, sandboxed execution, files, messaging channels, and tracing instead of leaving those layers as integration work.
+- **Why it stands out:** ByteDance's MIT-licensed long-horizon harness packages LangGraph orchestration with subagents, persistent memory, skills, configurable execution backends, files, messaging channels, and tracing instead of leaving those layers as integration work.
 - **Best for:** builders who want a batteries-included research-and-creation agent to run as a product or dismantle into a custom harness.
-- **Evidence:** 79k+ GitHub stars, active development, and a ground-up 2.0 release backed by 182 merged PRs. Last checked: 2026-08-11.
+- **Execution note:** the [configuration guide](https://github.com/bytedance/deer-flow/blob/main/backend/docs/CONFIGURATION.md#sandbox) separates host-local execution from Docker, Kubernetes, and micro-VM providers. `LocalSandboxProvider` is not an isolation boundary; host Bash is disabled by default and requires explicit `allow_host_bash: true`. Select and verify the execution provider before running untrusted workloads; the shared sandbox API does not imply equivalent containment. Last checked: 2026-10-19.
 
 ### Langflow
 - **Link:** https://github.com/langflow-ai/langflow

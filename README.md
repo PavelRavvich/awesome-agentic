@@ -414,7 +414,7 @@ Curated list of practical Retrieval-Augmented Generation systems, infrastructure
 ### Graph RAG systems
 
 - **Microsoft GraphRAG** - https://github.com/microsoft/graphrag - modular graph-based RAG system for knowledge graph indexing and query-time synthesis.
-- **LightRAG** - https://github.com/HKUDS/LightRAG - lightweight graph-enhanced RAG focused on simple indexing and fast retrieval.
+- **LightRAG** - https://github.com/HKUDS/LightRAG - graph-enhanced RAG with incremental indexing and mixed graph/vector retrieval. Its [storage guide](https://github.com/HKUDS/LightRAG#selecting-backend-storage) says all four default stores keep the dataset in process memory, with local files for persistence; they are for small-scale testing, not production. Choose a production backend explicitly; PostgreSQL can serve all four storage roles. Last checked: 2026-10-21.
 - **Neo4j GraphRAG for Python** - https://github.com/neo4j/neo4j-graphrag-python - production-oriented GraphRAG toolkit for Python apps built on Neo4j.
 
 ### End-to-end RAG systems
@@ -429,7 +429,7 @@ Curated list of practical Retrieval-Augmented Generation systems, infrastructure
 - **LlamaIndex** - https://github.com/run-llama/llama_index - document agent, indexing, OCR, retrieval, and data framework for context-heavy LLM applications.
 - **Haystack** - https://github.com/deepset-ai/haystack - modular LLM orchestration framework with mature retrieval pipelines, routing, and evaluation building blocks.
 - **Pathway** - https://github.com/pathwaycom/pathway - real-time data pipeline framework commonly used for continuously updating RAG ingestion and retrieval stacks.
-- **OpenViking** - https://github.com/volcengine/OpenViking - agent-native context database that unifies resources, memories, and skills in a virtual filesystem, with tiered loading, recursive retrieval, observable traces, and automatic session-memory extraction; AGPL-3.0 and still pre-1.0.
+- **OpenViking** - https://github.com/volcengine/OpenViking - agent-native context database unifying resources, memories, and skills in a virtual filesystem with tiered loading and session-memory extraction; AGPL-3.0 and still pre-1.0. The [authentication guide](https://github.com/volcengine/OpenViking/blob/main/docs/en/guides/04-authentication.md) distinguishes unauthenticated, loopback-only development from authenticated deployments. In API-key mode, use account-bound user/admin keys for tenant data; the root key manages deployment administration, not memory access. Last checked: 2026-10-21.
 - **LangChain** - https://github.com/langchain-ai/langchain - broad LLM application framework with retrieval, tools, integrations, and agent ecosystem gravity.
 
 ### RAG evaluation and benchmarks

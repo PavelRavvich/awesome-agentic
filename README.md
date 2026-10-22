@@ -857,7 +857,7 @@ Tooling is where agents cross from text into action. MCP is becoming a standard 
 - **Link:** https://github.com/IBM/mcp-context-forge
 - **Why it stands out:** Apache-2.0 gateway that federates MCP, A2A, REST, and gRPC behind one endpoint with centralized discovery, auth, guardrails, plugins, and OpenTelemetry observability.
 - **Best for:** platform teams that need a governed tool-and-agent gateway across mixed protocols rather than a local MCP server launcher.
-- **Evidence:** 4.1k+ GitHub stars and active v1.0 releases, including OAuth token exchange, vault credentials, dataplane publishing, and security hardening in v1.0.6. Last checked: 2026-07-22.
+- **Deployment note:** the [security policy](https://github.com/IBM/mcp-context-forge/blob/main/SECURITY.md#admin-ui-is-development-only) requires disabling both the Admin UI and Admin API in production (`MCPGATEWAY_UI_ENABLED=false`, `MCPGATEWAY_ADMIN_API_ENABLED=false`). Use authenticated REST APIs behind an appropriate network boundary; the gateway is a component, not a complete production security architecture. Security fixes are not backported, so plan upgrades rather than assuming long-term support for a pinned release. Last checked: 2026-10-22.
 
 ### Agentgateway
 - **Link:** https://github.com/agentgateway/agentgateway
@@ -869,6 +869,7 @@ Tooling is where agents cross from text into action. MCP is becoming a standard 
 - **Link:** https://github.com/stacklok/toolhive
 - **Why it stands out:** Apache-2.0 MCP platform that combines an isolated server runtime, gateway, registry, access policies, audit logs, OpenTelemetry, and a Kubernetes operator instead of leaving production governance as custom glue.
 - **Best for:** platform teams that need to run approved MCP servers across developer machines and Kubernetes with centralized security and observability.
+- **Deployment note:** the CLI's [network isolation](https://docs.stacklok.com/toolhive/guides-cli/network-isolation) is on by default, but custom servers without a permission profile fall back to unrestricted outbound HTTP(S), while host-directed access remains blocked. Set explicit destination allowlists; isolation requires bridge networking, and implicit isolation is dropped with a warning for host networking. Kubernetes uses a [separate enforcement path](https://github.com/stacklok/toolhive/blob/main/docs/arch/05-runconfig-and-permissions.md#kubernetes): the operator ignores `spec.permissionProfile`; configure pod security and `NetworkPolicy` separately. Last checked: 2026-10-22.
 
 ### Backlog.md
 - **Link:** https://github.com/MrLesk/Backlog.md

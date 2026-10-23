@@ -660,9 +660,9 @@ This is distinct from generic agent memory. A memory system remembers. A Persona
 
 ### Osaurus
 - **Link:** https://github.com/osaurus-ai/osaurus
-- **Why it stands out:** native Swift PersonalOS harness for Apple Silicon that combines local/cloud models, layered memory, agents, MCP, scheduling, browser use, and per-agent Linux VM sandboxes without an Electron or hosted control plane.
+- **Why it stands out:** native Swift PersonalOS harness for Apple Silicon that combines local/cloud models, layered memory, agents, MCP, scheduling, browser use, and VM-backed sandbox tools without an Electron or hosted control plane.
 - **Best for:** Mac users who want an owned, offline-capable personal agent runtime rather than a cross-platform web shell.
-- **Evidence:** MIT-licensed, 7.7k+ GitHub stars, and active v0.23 releases through August 2026; the Linux VM sandbox requires macOS 26, with Seatbelt confinement on earlier supported releases. Last checked: 2026-08-21.
+- **Execution note:** the [sandbox guide](https://github.com/osaurus-ai/osaurus/blob/main/docs/SANDBOX.md) describes a shared Linux VM on macOS 26+, with per-agent Unix users, not separate concurrent VMs. Experimental per-agent root filesystems take effect at the next sandbox start. On earlier macOS versions, Seatbelt confines writes but does not block host reads. Configure network policy separately: the VM defaults to unrestricted outbound NAT. Last checked: 2026-10-23.
 
 ### Sentient OS
 - **Link:** https://github.com/Sentient-OS-Labs/sentient-os

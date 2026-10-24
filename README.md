@@ -1212,8 +1212,9 @@ Agentic security needs its own eval loop because prompt injection, tool misuse, 
 
 ### garak
 - **Link:** https://github.com/NVIDIA/garak
-- **Why it stands out:** mature LLM vulnerability scanner with active releases and a broad probe/plugin posture.
-- **Best for:** teams that want a fast baseline scan before deeper agent-specific red teaming.
+- **Why it stands out:** extensible LLM vulnerability scanner with static, dynamic, and adaptive probes, configurable detectors, and inspectable prompt/response reports.
+- **Best for:** baseline model or endpoint weakness discovery before deeper agent-specific red teaming, not certification of a tool-using agent's safety.
+- **Evaluation note:** the [official FAQ](https://github.com/NVIDIA/garak/blob/main/FAQ.md) says raw pass rates are not comparable across probes, and evolving probes make garak a scanner rather than a fixed benchmark. Pin the scanner, probe/detector configuration, model, and sampling budget for regression comparisons; inspect failures instead of treating a high pass rate as an overall security score. Last checked: 2026-10-24.
 
 ### Observability and tracing
 

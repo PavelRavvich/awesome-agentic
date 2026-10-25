@@ -894,9 +894,9 @@ Agents that execute code need isolation, process control, and safe runtime envir
 
 ### NVIDIA OpenShell
 - **Link:** https://github.com/NVIDIA/openshell
-- **Why it stands out:** Apache-2.0 agent runtime that combines sandbox lifecycle across Docker, Podman, microVM, and experimental Kubernetes drivers with declarative filesystem, process, network, and inference policy.
-- **Best for:** teams that need auditable controls around coding or personal agents, including hot-reloadable L7 egress and model routing, rather than treating a container boundary as the whole security model; it remains pre-1.0.
-- **Evidence:** 8.4k+ GitHub stars and an active v0.0.115 release on 2026-08-27, with documented support for Claude Code, Codex, Copilot, OpenClaw, and Hermes Agent. Last checked: 2026-08-28.
+- **Why it stands out:** Apache-2.0 agent runtime combining sandbox lifecycle with kernel-enforced filesystem, process, and network policy, endpoint-bound credentials, and policy-change review.
+- **Best for:** teams that need auditable controls around coding or personal agents rather than treating a container boundary as the whole security model; it remains pre-1.0.
+- **Migration note:** the [0.1 upgrade guide](https://docs.nvidia.com/openshell/upgrade/0-1-0) requires recreating 0.0.x sandboxes and coordinating gateway, driver, CLI, and SDK versions; local installs cannot upgrade in place. Managed inference routes and `inference.local` were removed: attach providers explicitly and use their native endpoints. Treat this as a deployment migration, not a routine package bump. Last checked: 2026-10-25.
 
 ### E2B
 - **Link:** https://github.com/e2b-dev/E2B
@@ -920,6 +920,7 @@ Agents that execute code need isolation, process control, and safe runtime envir
 - **Link:** https://github.com/opensandbox-group/OpenSandbox
 - **Why it stands out:** Apache-2.0 agent sandbox platform with a unified API across Docker and Kubernetes, five language SDKs, network policy, credential injection, MCP, and stronger isolation paths through gVisor, Kata Containers, and Firecracker.
 - **Best for:** platform teams that want a self-hosted execution layer spanning coding agents, browser/desktop agents, evals, and large-scale sandbox scheduling.
+- **Network note:** the [server configuration](https://github.com/opensandbox-group/OpenSandbox/blob/main/server/configuration.md#egress) attaches the egress sidecar only when creation requests include `networkPolicy`; Docker requires bridge mode. Default `dns` enforcement does not enforce CIDR/IP rules; `dns+nft` adds that enforcement where nftables is available. Configure and test the intended egress boundary rather than assuming a sandbox or DNS allowlist blocks direct-IP traffic. Last checked: 2026-10-25.
 
 ### Kubernetes Agent Sandbox
 - **Link:** https://github.com/kubernetes-sigs/agent-sandbox
